@@ -17,21 +17,26 @@ public class MatchingPennies {
 	 */
 	public static void main(String[] args) {
 		//Declare Variables
-		String playerType, userChoicePennies, userChoiceOutput;
-		int startingPennies;
+		String playerType, userChoicePennies, pennyCountOutput, userFlip, computerFlip = "T";
+		int playerPennies, compPennies, minStart = 1, maxStart = 20;
 		
 		
 		//Allow player to choose the starting number of pennies
-		userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \n Choose a number between 1 and 20");
-		//Parse userChoicePennies as an integer
-		startingPennies = Integer.parseInt(userChoicePennies);
+		userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "+minStart 
+				                                         + " and " + maxStart);
+		//Parse userChoicePennies as a starting integer for both the player and the computer
+		playerPennies = Integer.parseInt(userChoicePennies);
+		compPennies = Integer.parseInt(userChoicePennies);
 		
 		
+		//Allow player to choose how they will play "Odd or even"
 		playerType = JOptionPane.showInputDialog("Which would you like to play as? \n Odd (O) or Even (E)?");
 		
 		//Display the user's choice
-		userChoiceOutput = "You have chosen to start with " + startingPennies + " pennies. \n Each player will be given " + startingPennies + " pennies.";
-		JOptionPane.showMessageDialog(null,userChoiceOutput );
+		pennyCountOutput = "You have " + playerPennies + " pennies. "
+						+ "\nCompueter has " + compPennies + " pennies.";
+		JOptionPane.showMessageDialog(null,pennyCountOutput );
+		
 
 
 		// TODO Auto-generated method stub
