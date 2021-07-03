@@ -17,8 +17,11 @@ public class MatchingPennies {
 	 */
 	public static void main(String[] args) {
 		//Declare Variables
-		String playerType, userChoicePennies, pennyCountOutput, userFlip, computerFlip = "T";
+		char playerType, compType;
+		String playerTypeChoice, userChoicePennies, userFlip, computerFlip = "T";
+		String pennyCountOutput, playerTypeOutput = null;
 		int playerPennies, compPennies, minStart = 1, maxStart = 20;
+		
 		
 		
 		//Allow player to choose the starting number of pennies
@@ -30,11 +33,28 @@ public class MatchingPennies {
 		
 		
 		//Allow player to choose how they will play "Odd or even"
-		playerType = JOptionPane.showInputDialog("Which would you like to play as? \n Odd (O) or Even (E)?");
+		playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n Odd (O) or Even (E)?");
+		//Parse playerTypeChoice as Char
+		playerType = playerTypeChoice.charAt(0);
+		
+		if (playerType == 'O' || playerType == 'o') {
+			compType = 'E';
+			playerTypeOutput = "You have chosen to be the Odd player. Computer will be the Even player";
+		}
+		else
+			if (playerType == 'E' || playerType == 'e') {
+				compType = 'E';
+				playerTypeOutput = "You have chosen to be the Even player. Computer will be the Odd player";
+			}
+			JOptionPane.showMessageDialog(null,playerType );
+
+		
+		JOptionPane.showMessageDialog(null,playerTypeOutput );
+
 		
 		//Display the user's choice
 		pennyCountOutput = "You have " + playerPennies + " pennies. "
-						+ "\nCompueter has " + compPennies + " pennies.";
+						+ "\nComputer has " + compPennies + " pennies.";
 		JOptionPane.showMessageDialog(null,pennyCountOutput );
 		
 
