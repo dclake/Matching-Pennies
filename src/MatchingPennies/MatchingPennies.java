@@ -17,16 +17,14 @@ public class MatchingPennies {
 	 */
 	public static void main(String[] args) {
 		//Declare Variables
-		char playerType, compType;
-		String playerTypeChoice, userChoicePennies, userFlip, computerFlip = "T";
-		String pennyCountOutput, playerTypeOutput = null;
-		int playerPennies, compPennies, minStart = 1, maxStart = 20;
+		char playerType, playerFlip, compFlip = 'T', compType;
+		String playerTypeChoice, userChoicePennies, playerFlipChoice, computerFlip = "T";
+		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
+		int playerPennies, compPennies, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		
 		
-		
-		//Allow player to choose the starting number of pennies
-		userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "+minStart 
-				                                         + " and " + maxStart);
+		userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
+														+minStart + " and " + maxStart);
 		//Parse userChoicePennies as a starting integer for both the player and the computer
 		playerPennies = Integer.parseInt(userChoicePennies);
 		compPennies = Integer.parseInt(userChoicePennies);
@@ -34,8 +32,8 @@ public class MatchingPennies {
 		
 		//Allow player to choose how they will play "Odd or even"
 		playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n Odd (O) or Even (E)?");
-		//Parse playerTypeChoice as Char
-		playerType = playerTypeChoice.charAt(0);
+		
+		playerType = playerTypeChoice.charAt(0);//Parse playerTypeChoice as Char
 		
 		if (playerType == 'O' || playerType == 'o') {
 			compType = 'E';
@@ -46,21 +44,63 @@ public class MatchingPennies {
 				compType = 'E';
 				playerTypeOutput = "You have chosen to be the Even player. Computer will be the Odd player";
 			}
-			JOptionPane.showMessageDialog(null,playerType );
+			//JOptionPane.showMessageDialog(null,playerType );
 
+		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
+		turnCount = playerPennies;
+		
+		pennyCountOutput = "You have " + playerPennies + " pennies. \nComputer has " + compPennies + " pennies.";
+		
+		while (turnCount >0) {
+			JOptionPane.showMessageDialog(null,pennyCountOutput );
+			playerFlipChoice = JOptionPane.showInputDialog("Let's flip penny number " + turnCount +".\n"
+					+ "0 for Heads or 1 for Tails?"); 
+			playerFlip = playerFlipChoice.charAt(0); //Parse playerFlipChoice as Char
+			compFlipChoice = (int) (Math.random()*3);
+			if (compFlipChoice == 1) {
+				compFlip = 'H';
+			}
+			else if (compFlipChoice ==2){
+				compFlip = 'T';
+			}
+			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
+			JOptionPane.showMessageDialog(null,flipChoiceOutput );
+			if (playerFlip == compFlip) {
+				if (playerType == 'E') {
+					playerPennies++;
+					compPennies--;
+				}
+				else {
+					playerPennies --;
+					compPennies++;
+				}
+			}
+			else {
+				if (playerType == 'O') {
+					playerPennies++;
+					compPennies--;
+				}
+			else {
+				playerPennies --;
+				compPennies++;
+			}
+		}
+
+			if (compPennies < playerPennies) {
+				turnCount = compPennies;
+			}
+			else {
+				turnCount = playerPennies;
+			}
+		
+		//Display the user's choice
 		
 		JOptionPane.showMessageDialog(null,playerTypeOutput );
 
-		
-		//Display the user's choice
-		pennyCountOutput = "You have " + playerPennies + " pennies. "
-						+ "\nComputer has " + compPennies + " pennies.";
-		JOptionPane.showMessageDialog(null,pennyCountOutput );
-		
 
 
 		// TODO Auto-generated method stub
 
 	}
 
-}
+}}
