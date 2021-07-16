@@ -19,6 +19,7 @@ public class MatchingPennies {
 		//Declare Variables
 		char playerType, playerFlip, compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice, computerFlip = "T";
+		char []computerFlips= {'H', 'T'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
 		int playerPennies, compPennies, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		
@@ -29,6 +30,7 @@ public class MatchingPennies {
 		playerPennies = Integer.parseInt(userChoicePennies);
 		compPennies = Integer.parseInt(userChoicePennies);
 		
+		JOptionPane.showMessageDialog(null, computerFlips[0]);
 		
 		//Allow player to choose how they will play "Odd or even"
 		playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n Odd (O) or Even (E)?");
@@ -53,8 +55,8 @@ public class MatchingPennies {
 		
 		while (turnCount >0) {
 			JOptionPane.showMessageDialog(null,pennyCountOutput );
-			playerFlipChoice = JOptionPane.showInputDialog("Let's flip penny number " + turnCount +".\n"
-					+ "0 for Heads or 1 for Tails?"); 
+			playerFlipChoice = JOptionPane.showInputDialog("Turn count ="+turnCount+"Let's flip penny number " + turnCount +".\n"
+					+ "H for Heads or T for Tails?"); 
 			playerFlip = playerFlipChoice.charAt(0); //Parse playerFlipChoice as Char
 			compFlipChoice = (int) (Math.random()*3);
 			if (compFlipChoice == 1) {
