@@ -22,6 +22,7 @@ public class MatchingPennies {
 		char []computerFlips= {'H', 'T'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
 		int playerPennies, compPennies, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
+		String winMessage = "You won this round", loseMessage = "You lost this round";
 		
 		
 		userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
@@ -51,65 +52,46 @@ public class MatchingPennies {
 			}
 
 		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
-		turnCount = playerPennies;
+		//turnCount = playerPennies;
 		
 		
 		
-		while (turnCount >0) {
+		while (playerPennies >0 || compPennies >0 ) {
 			pennyCountOutput = "Hi " + playerName +" You have " + playerPennies + " pennies. "
 					+ "\nComputer has " + compPennies + " pennies.";
-			JOptionPane.showMessageDialog(null,pennyCountOutput );
-			playerFlipChoice = JOptionPane.showInputDialog("Turn count ="+turnCount+"Let's flip penny number " + turnCount +".\n"
+			//JOptionPane.showMessageDialog(null,pennyCountOutput );
+			playerFlipChoice = JOptionPane.showInputDialog(pennyCountOutput+"\n\nLet's flip penny number " +".\n"
 					+ "H for Heads or T for Tails?"); 
 			playerFlip = playerFlipChoice.charAt(0); //Parse playerFlipChoice as Char
 			compFlipChoice = (int) (Math.random()*3);
 			compFlip = computerFlips[(int) (Math.random()*3)];
-			JOptionPane.showMessageDialog(null,compFlip );
+			//JOptionPane.showMessageDialog(null,compFlip );
 
-			//if (compFlipChoice == 1) {
-				//compFlip = 'H';
-			//}
-			//else if (compFlipChoice ==2){
-				//compFlip = 'T';
-			//}
 			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
 			JOptionPane.showMessageDialog(null,flipChoiceOutput );
-			if (playerFlip == compFlip) {
-				if (playerType == 'E') {
-					playerPennies++;
-					compPennies--;
+			if (playerFlip == compFlip && playerType == 'E') {
+				playerPennies++;
+				compPennies--;
+				JOptionPane.showMessageDialog(null,winMessage );
+				
 				}
-				else {
-					playerPennies --;
-					compPennies++;
-				}
-			}
 			else {
 				if (playerType == 'O') {
 					playerPennies++;
 					compPennies--;
+					JOptionPane.showMessageDialog(null,winMessage );
 				}
 			else {
 				playerPennies --;
 				compPennies++;
+				JOptionPane.showMessageDialog(null,loseMessage );
 			}
-		}
-
-			if (compPennies < playerPennies) {
-				turnCount = compPennies;
+		}	
 			}
-			else {
-				turnCount = playerPennies;
-			}
-		
-		//Display the user's choice
-		
-		JOptionPane.showMessageDialog(null,playerTypeOutput );
+				
+		JOptionPane.showMessageDialog(null,playerPennies );
 
-
-
-		// TODO Auto-generated method stub
 
 	}
 
-}}
+}
