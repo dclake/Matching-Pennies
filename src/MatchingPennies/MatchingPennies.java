@@ -27,12 +27,14 @@ public class MatchingPennies {
 		String winMessage = "You won this round", loseMessage = "You lost this round";
 		String wonGame, gameOver, invalidMessage;
 		
+		// Populating an array for numbers which can chosen as the starting coin count
 		arrayStart = minStart;
-		//populate 
 		for (counter = 0; counter < maxStart; counter++) {
 			startPennies[counter]=arrayStart;
 			arrayStart ++;
 		}
+		
+		
 		while (search <= 0){
 			userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
 					+minStart + " and " + maxStart +".");
