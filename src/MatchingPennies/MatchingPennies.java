@@ -37,17 +37,24 @@ public class MatchingPennies {
 			userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
 					+minStart + " and " + maxStart +".");
 			//Parse userChoicePennies as a starting integer for both the player and the computer
-			playerPennies = Integer.parseInt(userChoicePennies);
-			search = Arrays.binarySearch(startPennies, playerPennies);
-			if(search <= 0) {
+			try {
+				playerPennies = Integer.parseInt(userChoicePennies);
+				search = Arrays.binarySearch(startPennies, playerPennies);
+				compPennies = Integer.parseInt(userChoicePennies);
+				if(search <= 0) {
+					invalidMessage = "Invalid Entry!! \n"+ userChoicePennies +" is not a number between "+minStart +" and " + maxStart +".";
+					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			catch (NumberFormatException e) { 
 				invalidMessage = "Invalid Entry!! \n"+ userChoicePennies +" is not a number between "+minStart +" and " + maxStart +".";
-				JOptionPane.showMessageDialog(null, invalidMessage,
-					      "Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
-				
+				JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+				search = 0;
 			}
 			
+			
 
-			compPennies = Integer.parseInt(userChoicePennies);
+
 		}
 		
 		
