@@ -34,36 +34,26 @@ public class MatchingPennies {
 			arrayStart ++;
 		}
 		
-		
+		// Loop for input validation that entry is both an integer and between the minimum and maximum value for Starting Pennies
 		while (search <= 0){
 			userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
 					+minStart + " and " + maxStart +".");
-			//Parse userChoicePennies as a starting integer for both the player and the computer
+			//Parse userChoicePennies as a starting integer for both the player and the computer and throws exception if not integer
 			try {
 				playerPennies = Integer.parseInt(userChoicePennies);
 				search = Arrays.binarySearch(startPennies, playerPennies);
 				compPennies = Integer.parseInt(userChoicePennies);
 				if(search <= 0) {
-					invalidMessage = "Invalid Entry!! \n"+ userChoicePennies +" is not a number between "+minStart +" and " + maxStart +".";
+					invalidMessage = "Invalid Entry!!! \n"+ userChoicePennies +" is not a number between "+minStart +" and " + maxStart +".";
 					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			catch (NumberFormatException e) { 
-				invalidMessage = "Invalid Entry!! \n"+ userChoicePennies +" is not a number between "+minStart +" and " + maxStart +".";
+				invalidMessage = "Invalid Entry!!! \n"+ userChoicePennies +" is not a number between "+minStart +" and " + maxStart +".";
 				JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 				search = 0;
 			}
-			
-			
-
-
 		}
-		
-		
-		
-		
-		
-		
 		//Allows the player to choose how they will play "Odd or even" and sets name variables used in the rest of the program
 		playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
 		playerType = playerTypeChoice.charAt(0);
@@ -137,9 +127,3 @@ public class MatchingPennies {
 
 		}
 		}}
-			
-	
-
-
-
-
