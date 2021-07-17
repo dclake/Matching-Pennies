@@ -53,26 +53,30 @@ public class MatchingPennies {
 				search = 0;
 			}
 		}
+		//Initialize search for loop to work
+		search = 0;
 		//Allows the player to choose how they will play "Odd or even" and sets name variables used in the rest of the program
-		playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
-		playerType = playerTypeChoice.charAt(0);
-		search = Arrays.binarySearch(playerTypes, playerType);
-		if (playerType == 'O' || playerType == 'o') {
-			compType = 'E';
-			playerName = "Odd";
-			compName = "Even";		}
-		else
-			if (playerType == 'E' || playerType == 'e') {
-				compType = 'O';
-				playerName ="Even";
-				compName = "Odd";
-			}
+		while (search <=0) {
+			playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
+			playerType = playerTypeChoice.charAt(0);
+			search = Arrays.binarySearch(playerTypes, playerType);
+			if (playerType == 'O' || playerType == 'o') {
+				compType = 'E';
+				playerName = "Odd";
+				compName = "Even";		}
+			else
+				if (playerType == 'E' || playerType == 'e') {
+					compType = 'O';
+					playerName ="Even";
+					compName = "Odd";
+				}
 			else 
 				if(search <= 0) {
 					invalidMessage = "Invalid Entry!!! \n" +playerType + " is an invaild option. "
 							+ "\n Please try again.";
 					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 					}
+		}
 
 		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
 		turnCount = playerPennies;
