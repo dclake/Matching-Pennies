@@ -19,16 +19,16 @@ public class MatchingPennies {
 	public static void main(String[] args) {
 		//Declare Variables
 		int [] startPennies = new int [20];
-		char playerType = 'a', playerFlip, compFlip = 'T', compType;
+		char playerType = 'a', playerFlip = 0, compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
-		char []computerFlips= {'H', 'T'}, playerTypes = {'e', 'E', 'o', 'O'};
+		char []flipOptions= {'H', 'T'}, playerTypes = {'e', 'E', 'o', 'O'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
 		int counter, arrayStart, search = 0, playerPennies =0, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
 		String wonGame, gameOver, invalidMessage;
 		
 		// Populating an array for numbers which can chosen as the starting coin count
-		arrayStart = minStart;
+		arrayStart = minStart-1;
 		for (counter = 0; counter < maxStart; counter++) {
 			startPennies[counter]=arrayStart;
 			arrayStart ++;
@@ -83,15 +83,23 @@ public class MatchingPennies {
 		
 		//Loop through turn counts while these are more than zero and contains general game logic.
 		while (turnCount >0 ) {
-			pennyCountOutput = "Turn count is " + turnCount+ "\nHi " + playerName +" You have " + playerPennies + " pennies. "
-					+ "\nComputer has " + compPennies + " pennies.";
-			playerFlipChoice = JOptionPane.showInputDialog(pennyCountOutput+"\n\nLet's flip penny number " +".\n"
-					+ "H for Heads or T for Tails?"); 
-			playerFlip = playerFlipChoice.charAt(0);
-			
+			search = 0;
+			while (search <=0) {
+				pennyCountOutput = "Turn count is " + turnCount+ "\nHi " + playerName +" You have " + playerPennies + " pennies. "
+						+ "\nComputer has " + compPennies + " pennies.";
+				playerFlipChoice = JOptionPane.showInputDialog(pennyCountOutput+"\n\nLet's flip penny number " +".\n"
+						+ "H for Heads or T for Tails?"); 
+				playerFlip = Character.toUpperCase(playerFlipChoice.charAt(0));
+				search = Arrays.binarySearch(flipOptions, playerFlip);
+				if(search <= 0) {
+					invalidMessage = "Invalid Entry!!! \n" +playerFlip + " is an invaild option. "
+							+ "\n Please try again.";
+					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+					}
+			}
 			//Randomly chooses the computers flip from an Array containing 'H' and 'T'
 			compFlipChoice = (int) (Math.random()*3);
-			compFlip = computerFlips[(int) (Math.random()*2)];
+			compFlip = flipOptions[(int) (Math.random()*2)];
 			
 			
 			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
@@ -123,7 +131,7 @@ public class MatchingPennies {
 					turnCount = playerPennies;
 				}
 				
-				}
+				
 		
 		//Logic for determining the winner of the game.
 		if (playerPennies == 0) {
@@ -136,4 +144,4 @@ public class MatchingPennies {
 			JOptionPane.showMessageDialog(null, wonGame);
 
 		}
-		}}
+		}}}
