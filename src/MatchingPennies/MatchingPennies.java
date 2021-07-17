@@ -1,6 +1,7 @@
 package MatchingPennies;
 
 import javax.swing.JOptionPane;
+import java.util.Arrays;
 
 /**
  * 
@@ -17,19 +18,35 @@ public class MatchingPennies {
 	 */
 	public static void main(String[] args) {
 		//Declare Variables
+		int [] startPennies = new int [20];
 		char playerType, playerFlip, compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
 		char []computerFlips= {'H', 'T'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
-		int playerPennies =-1, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
+		int counter, search = 0, playerPennies =0, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
-		String wonGame, gameOver;
+		String wonGame, gameOver, output;
 		
-		while (playerPennies < minStart) {
+		for (counter = 0; counter < maxStart; counter++) {
+			startPennies[counter]=minStart;
+			minStart ++;
+		}
+		
+		minStart = 1;
+		while (search <= 0){
 			userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
 					+minStart + " and " + maxStart);
 			//Parse userChoicePennies as a starting integer for both the player and the computer
+			
 			playerPennies = Integer.parseInt(userChoicePennies);
+			search = Arrays.binarySearch(startPennies, playerPennies);
+			if(search > 0) {
+				output = "key was found " + search;
+			} else {
+				output = "key was not found " + search;
+			}
+			JOptionPane.showMessageDialog(null, output);
+
 			compPennies = Integer.parseInt(userChoicePennies);
 		}
 		
