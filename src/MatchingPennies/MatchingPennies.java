@@ -23,6 +23,7 @@ public class MatchingPennies {
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
 		int playerPennies, compPennies, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
+		String wonGame = "You have won the game!!!", gameOver = "You have no more pennies to play. \n Game Over!!!";
 		
 		
 		userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
@@ -52,21 +53,18 @@ public class MatchingPennies {
 			}
 
 		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
-		//turnCount = playerPennies;
+		turnCount = playerPennies;
 		
 		
 		
-		while (playerPennies >0 || compPennies >0 ) {
-			pennyCountOutput = "Hi " + playerName +" You have " + playerPennies + " pennies. "
+		while (turnCount >0 ) {
+			pennyCountOutput = "Turn count is " + turnCount+ "\nHi " + playerName +" You have " + playerPennies + " pennies. "
 					+ "\nComputer has " + compPennies + " pennies.";
-			//JOptionPane.showMessageDialog(null,pennyCountOutput );
 			playerFlipChoice = JOptionPane.showInputDialog(pennyCountOutput+"\n\nLet's flip penny number " +".\n"
 					+ "H for Heads or T for Tails?"); 
 			playerFlip = playerFlipChoice.charAt(0); //Parse playerFlipChoice as Char
 			compFlipChoice = (int) (Math.random()*3);
-			compFlip = computerFlips[(int) (Math.random()*3)];
-			//JOptionPane.showMessageDialog(null,compFlip );
-
+			compFlip = computerFlips[(int) (Math.random()*2)];
 			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
 			JOptionPane.showMessageDialog(null,flipChoiceOutput );
 			if (playerFlip == compFlip && playerType == 'E') {
@@ -76,7 +74,7 @@ public class MatchingPennies {
 				
 				}
 			else {
-				if (playerType == 'O') {
+				if (playerFlip != compFlip && playerType == 'O') {
 					playerPennies++;
 					compPennies--;
 					JOptionPane.showMessageDialog(null,winMessage );
@@ -85,13 +83,27 @@ public class MatchingPennies {
 				playerPennies --;
 				compPennies++;
 				JOptionPane.showMessageDialog(null,loseMessage );
-			}
-		}	
-			}
+			}}
+				if (playerPennies>compPennies) {
+					turnCount= compPennies;
+				}
+				else {
+					turnCount = playerPennies;
+				}
 				
-		JOptionPane.showMessageDialog(null,playerPennies );
+				}
+		
+		if (playerPennies == 0) {
+			JOptionPane.showMessageDialog(null, gameOver);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, wonGame);
+
+		}
+		}}
+			
+	
 
 
-	}
 
-}
+
