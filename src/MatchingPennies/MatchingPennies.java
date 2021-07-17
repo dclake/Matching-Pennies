@@ -19,9 +19,9 @@ public class MatchingPennies {
 	public static void main(String[] args) {
 		//Declare Variables
 		int [] startPennies = new int [20];
-		char playerType, playerFlip, compFlip = 'T', compType;
+		char playerType = 'a', playerFlip, compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
-		char []computerFlips= {'H', 'T'};
+		char []computerFlips= {'H', 'T'}, playerTypes = {'e', 'E', 'o', 'O'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
 		int counter, arrayStart, search = 0, playerPennies =0, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
@@ -33,7 +33,6 @@ public class MatchingPennies {
 			startPennies[counter]=arrayStart;
 			arrayStart ++;
 		}
-		
 		// Loop for input validation that entry is both an integer and between the minimum and maximum value for Starting Pennies
 		while (search <= 0){
 			userChoicePennies = JOptionPane.showInputDialog("How many pennies would you like to start with? \nChoose a number between "
@@ -57,6 +56,7 @@ public class MatchingPennies {
 		//Allows the player to choose how they will play "Odd or even" and sets name variables used in the rest of the program
 		playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
 		playerType = playerTypeChoice.charAt(0);
+		search = Arrays.binarySearch(playerTypes, playerType);
 		if (playerType == 'O' || playerType == 'o') {
 			compType = 'E';
 			playerName = "Odd";
@@ -67,6 +67,12 @@ public class MatchingPennies {
 				playerName ="Even";
 				compName = "Odd";
 			}
+			else 
+				if(search <= 0) {
+					invalidMessage = "Invalid Entry!!! \n" +playerType + " is an invaild option. "
+							+ "\n Please try again.";
+					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+					}
 
 		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
 		turnCount = playerPennies;
