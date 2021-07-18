@@ -96,7 +96,7 @@ public class MatchingPennies {
 				search = Arrays.binarySearch(flipOptions, playerFlip);
 				System.out.println(search);
 				if(search < 0) {
-					invalidMessage = "Invalid Entry!!! \n" +playerFlip + " is an invaild option. "
+					invalidMessage = "Invalid Entry!!! \n" +playerFlipChoice + " is an invaild option. "
 							+ "\nPlease try again.";
 					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 					}
