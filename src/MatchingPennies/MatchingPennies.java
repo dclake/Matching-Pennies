@@ -19,7 +19,7 @@ public class MatchingPennies {
 	public static void main(String[] args) {
 		//Declare Variables
 		int [] startPennies = new int [20];
-		char playerType = 'a', playerFlip , compFlip = 'T', compType;
+		char playerType = 'a', playerFlip = 0 , compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
 		char []flipOptions= {'H', 'T'}, playerTypes = {'e', 'E', 'o', 'O'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
@@ -100,53 +100,54 @@ public class MatchingPennies {
 							+ "\nPlease try again.";
 					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 					}
-			}}}}
-			
+			}
 			//Randomly chooses the computers flip from an Array containing 'H' and 'T'
-//			compFlipChoice = (int) (Math.random()*3);
-//			compFlip = flipOptions[(int) (Math.random()*2)];
-//			
-//			
-//			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
-//			JOptionPane.showMessageDialog(null,flipChoiceOutput );
-//			
-//			//Logic for determining the winner of the round
-//			if (playerFlip == compFlip && playerType == 'E') {
-//				playerPennies++;
-//				compPennies--;
-//				JOptionPane.showMessageDialog(null,winMessage );
-//				
-//				}
-//			else {
-//				if (playerFlip != compFlip && playerType == 'O') {
-//					playerPennies++;
-//					compPennies--;
-//					JOptionPane.showMessageDialog(null,winMessage );
-//				}
-//			else {
-//				playerPennies --;
-//				compPennies++;
-//				JOptionPane.showMessageDialog(null,loseMessage );
-//			}}
-//				// Logic for setting the remaining turns in the loop by determining the player with the least pennies
-//				if (playerPennies>compPennies) {
-//					turnCount= compPennies;
-//				}
-//				else {
-//					turnCount = playerPennies;
-//				}
-//				
-//				
-//		
-//		//Logic for determining the winner of the game.
-//		if (playerPennies == 0) {
-//			gameOver = "Sorry " + playerName + ". You have no more pennies to play.\n"
-//					+ compName +" has won the game \nGame Over!!!";
-//			JOptionPane.showMessageDialog(null, gameOver);
-//		}
-//		else {
-//			wonGame = "WOW " + playerName +"!\n You are really good at this!\n You have won the game!!!";
-//			JOptionPane.showMessageDialog(null, wonGame);
-//
-//		}
-//		}}}
+			compFlipChoice = (int) (Math.random()*3);
+			compFlip = flipOptions[(int) (Math.random()*2)];
+			
+			
+			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
+			JOptionPane.showMessageDialog(null,flipChoiceOutput );
+			
+			//Logic for determining the winner of the round
+			if (playerFlip == compFlip && playerType == 'E') {
+				playerPennies++;
+				compPennies--;
+				JOptionPane.showMessageDialog(null,winMessage );	
+				}
+			else {
+				if (playerFlip != compFlip && playerType == 'O') {
+					playerPennies++;
+					compPennies--;
+					JOptionPane.showMessageDialog(null,winMessage );
+				}
+			else {
+				playerPennies --;
+				compPennies++;
+				JOptionPane.showMessageDialog(null,loseMessage );
+			}}
+			
+				// Logic for setting the remaining turns in the loop by determining the player with the least pennies
+				if (playerPennies>compPennies) {
+					turnCount= compPennies;
+				}
+				else {
+					turnCount = playerPennies;
+				}
+				search = -1;
+				}
+				
+				
+		
+		//Logic for determining the winner of the game.
+		if (playerPennies == 0) {
+			gameOver = "Sorry " + playerName + ". You have no more pennies to play.\n"
+					+ compName +" has won the game \nGame Over!!!";
+			JOptionPane.showMessageDialog(null, gameOver);
+		}
+		else {
+			wonGame = "WOW " + playerName +"!\n You are really good at this!\n You have won the game!!!";
+			JOptionPane.showMessageDialog(null, wonGame);
+
+		}
+		}}
