@@ -62,10 +62,8 @@ public class MatchingPennies {
 		while (search != 0 && search != 1) {
 			try {
 			playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
-			//playerType = playerTypeChoice.charAt(0);
 				playerType = Character.toUpperCase(playerTypeChoice.charAt(0));
 				search = Arrays.binarySearch(playerTypes, playerType);
-				System.out.println(search);
 				if (playerType == 'O' || playerType == 'o') {
 					playerType = 'O';
 					playerName = "Odd";
@@ -83,18 +81,20 @@ public class MatchingPennies {
 							JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 						}
 			
-		}
+				}
 			catch (StringIndexOutOfBoundsException e) { 
 				invalidMessage = "Invalid Entry!!! \nSelect O for Odd or E for Even";
 				JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
-				search = 3;}}
-
+				search = 3;
+					}
+				}
 		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
 		turnCount = playerPennies;
 		
 		//Loop through turn counts while these are more than zero and contains general game logic.
 		search = -1;
 		while (turnCount >0 ) {
+			//Loop providing input validation for flips using search of an array.
 			while (search < 0) {
 				pennyCountOutput = "Hi " + playerName +" You have " + playerPennies + " pennies. "
 						+ "\nComputer has " + compPennies + " pennies.";
@@ -102,7 +102,6 @@ public class MatchingPennies {
 						+ "[H]eads or [T]ails?"); 
 				playerFlip = Character.toUpperCase(playerFlipChoice.charAt(0));
 				search = Arrays.binarySearch(flipOptions, playerFlip);
-				System.out.println(search);
 				if(search < 0) {
 					invalidMessage = "Invalid Entry!!! \n" +playerFlipChoice + " is an invaild option. "
 							+ "\nPlease try again.";
@@ -110,7 +109,6 @@ public class MatchingPennies {
 					}
 			}
 			compFlip = flipOptions[(int) (Math.random()*2)];
-			
 			
 			flipChoiceOutput = "You chose " +playerFlip + ".\nComputer chose " + compFlip + ".";
 			JOptionPane.showMessageDialog(null,flipChoiceOutput );
@@ -142,10 +140,7 @@ public class MatchingPennies {
 					turnCount = playerPennies;
 				}
 				
-				}
-				
-				
-		
+				}	
 		//Logic for determining the winner of the game.
 		if (playerPennies == 0) {
 			gameOver = "Sorry " + playerName + ". You have no more pennies to play.\n"
