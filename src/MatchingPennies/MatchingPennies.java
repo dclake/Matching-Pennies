@@ -21,7 +21,7 @@ public class MatchingPennies {
 		int [] startPennies = new int [20];
 		char playerType = 'a', playerFlip = 0 , compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
-		char []flipOptions= {'H', 'T'}, playerTypes = {'e', 'E', 'o', 'O'};
+		char []flipOptions= {'H', 'T'}, playerTypes = {'E','O'};
 		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
 		int counter, arrayStart, search = 0, playerPennies =0, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
@@ -56,12 +56,18 @@ public class MatchingPennies {
 			}
 		}
 		//Initialize search for loop to work
-		search = 0;
+		search = 3;
 		//Allows the player to choose how they will play "Odd or even" and sets name variables used in the rest of the program
-		while (search <=0) {
+		while (search != 0 && search != 1) {
 			playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
-			playerType = playerTypeChoice.charAt(0);
+			//playerType = playerTypeChoice.charAt(0);
+			playerType = Character.toUpperCase(playerTypeChoice.charAt(0));
+			System.out.println(playerTypeChoice);
+			System.out.println(playerType);
+			Arrays.sort(playerTypes);
+
 			search = Arrays.binarySearch(playerTypes, playerType);
+			System.out.println(search);
 			if (playerType == 'O' || playerType == 'o') {
 				compType = 'E';
 				playerType = 'O';
@@ -94,7 +100,6 @@ public class MatchingPennies {
 				playerFlipChoice = JOptionPane.showInputDialog(pennyCountOutput+"\n\nLet's flip penny number " +".\n"
 						+ "[H]eads or [T]ails?"); 
 				playerFlip = Character.toUpperCase(playerFlipChoice.charAt(0));
-//				playerFlip = playerFlipChoice.charAt(0);
 				search = Arrays.binarySearch(flipOptions, playerFlip);
 				System.out.println(search);
 				if(search < 0) {
@@ -128,7 +133,8 @@ public class MatchingPennies {
 				compPennies++;
 				JOptionPane.showMessageDialog(null,loseMessage );
 			}}
-			
+			//Return search to condition so loop can be entered
+			search = -1;
 				// Logic for setting the remaining turns in the loop by determining the player with the least pennies
 				if (playerPennies>compPennies) {
 					turnCount= compPennies;
@@ -136,7 +142,7 @@ public class MatchingPennies {
 				else {
 					turnCount = playerPennies;
 				}
-				search = -1;
+				
 				}
 				
 				
