@@ -64,11 +64,13 @@ public class MatchingPennies {
 			search = Arrays.binarySearch(playerTypes, playerType);
 			if (playerType == 'O' || playerType == 'o') {
 				compType = 'E';
+				playerType = 'O';
 				playerName = "Odd";
 				compName = "Even";		}
 			else
 				if (playerType == 'E' || playerType == 'e') {
 					compType = 'O';
+					playerType= 'E';
 					playerName ="Even";
 					compName = "Odd";
 				}
