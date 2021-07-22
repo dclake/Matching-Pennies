@@ -19,15 +19,16 @@ public class MatchingPennies {
 	public static void main(String[] args) {
 		//Declare Variables
 		int [] startPennies = new int [20];
-		char playerType = 'a', playerFlip = 0 , compFlip = 'T', compType;
-		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
+		char playerType = 'a', playerFlip = 0 , compFlip = 'T';
+		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null;
 		char []flipOptions= {'H', 'T'}, playerTypes = {'E','O'};
 		String pennyCountOutput, flipChoiceOutput;
-		int counter, arrayStart, search = 0, playerPennies =0, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
+		int counter, arrayStart, search = 0, playerPennies =0, compPennies = 0, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
 		String wonGame, gameOver, invalidMessage;
 		
 		Arrays.sort(flipOptions);
+		Arrays.sort(playerTypes);
 		
 		// Populating an array for numbers which can chosen as the starting coin count
 		arrayStart = minStart-1;
@@ -63,19 +64,14 @@ public class MatchingPennies {
 			playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
 			//playerType = playerTypeChoice.charAt(0);
 				playerType = Character.toUpperCase(playerTypeChoice.charAt(0));
-				System.out.println(playerTypeChoice);
-				System.out.println(playerType);
-				Arrays.sort(playerTypes);
 				search = Arrays.binarySearch(playerTypes, playerType);
 				System.out.println(search);
 				if (playerType == 'O' || playerType == 'o') {
-					compType = 'E';
 					playerType = 'O';
 					playerName = "Odd";
 					compName = "Even";		}
 				else
 					if (playerType == 'E' || playerType == 'e') {
-						compType = 'O';
 						playerType= 'E';
 						playerName ="Even";
 						compName = "Odd";
@@ -113,8 +109,6 @@ public class MatchingPennies {
 					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
 					}
 			}
-			//Randomly chooses the computers flip from an Array containing 'H' and 'T'
-			compFlipChoice = (int) (Math.random()*3);
 			compFlip = flipOptions[(int) (Math.random()*2)];
 			
 			
