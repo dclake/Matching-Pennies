@@ -124,12 +124,13 @@ public class MatchingPennies {
 					playerPennies++;
 					compPennies--;
 					JOptionPane.showMessageDialog(null,winMessage );
-				}
+					}
 			else {
 				playerPennies --;
 				compPennies++;
 				JOptionPane.showMessageDialog(null,loseMessage );
-			}}
+					}
+				}
 			//Return search to condition so loop can be entered
 			search = -1;
 				// Logic for setting the remaining turns in the loop by determining the player with the least pennies
@@ -146,10 +147,11 @@ public class MatchingPennies {
 			gameOver = "Sorry " + playerName + ". You have no more pennies to play.\n"
 					+ compName +" has won the game \nGame Over!!!";
 			JOptionPane.showMessageDialog(null, gameOver);
-		}
+			}
 		else {
 			wonGame = "WOW " + playerName +"!\n You are really good at this!\n You have won the game!!!";
 			JOptionPane.showMessageDialog(null, wonGame);
 
-		}
-		}}
+			}
+	}
+}
