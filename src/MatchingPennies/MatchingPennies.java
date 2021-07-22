@@ -22,7 +22,7 @@ public class MatchingPennies {
 		char playerType = 'a', playerFlip = 0 , compFlip = 'T', compType;
 		String playerTypeChoice, userChoicePennies, playerFlipChoice,playerName = null,compName=null, computerFlip = "T" ;
 		char []flipOptions= {'H', 'T'}, playerTypes = {'E','O'};
-		String pennyCountOutput, playerTypeOutput = null, flipChoiceOutput;
+		String pennyCountOutput, flipChoiceOutput;
 		int counter, arrayStart, search = 0, playerPennies =0, compPennies = 0, compFlipChoice, turnCount, minStart = 1, maxStart = 20;
 		String winMessage = "You won this round", loseMessage = "You lost this round";
 		String wonGame, gameOver, invalidMessage;
@@ -59,34 +59,39 @@ public class MatchingPennies {
 		search = 3;
 		//Allows the player to choose how they will play "Odd or even" and sets name variables used in the rest of the program
 		while (search != 0 && search != 1) {
+			try {
 			playerTypeChoice = JOptionPane.showInputDialog("Which would you like to play as? \n [O]dd or [E]ven?");
 			//playerType = playerTypeChoice.charAt(0);
-			playerType = Character.toUpperCase(playerTypeChoice.charAt(0));
-			System.out.println(playerTypeChoice);
-			System.out.println(playerType);
-			Arrays.sort(playerTypes);
-
-			search = Arrays.binarySearch(playerTypes, playerType);
-			System.out.println(search);
-			if (playerType == 'O' || playerType == 'o') {
-				compType = 'E';
-				playerType = 'O';
-				playerName = "Odd";
-				compName = "Even";		}
-			else
-				if (playerType == 'E' || playerType == 'e') {
-					compType = 'O';
-					playerType= 'E';
-					playerName ="Even";
-					compName = "Odd";
-				}
-			else 
-				if(search <= 0) {
-					invalidMessage = "Invalid Entry!!! \n" +playerType + " is an invaild option. "
-							+ "\nPlease try again.";
-					JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+				playerType = Character.toUpperCase(playerTypeChoice.charAt(0));
+				System.out.println(playerTypeChoice);
+				System.out.println(playerType);
+				Arrays.sort(playerTypes);
+				search = Arrays.binarySearch(playerTypes, playerType);
+				System.out.println(search);
+				if (playerType == 'O' || playerType == 'o') {
+					compType = 'E';
+					playerType = 'O';
+					playerName = "Odd";
+					compName = "Even";		}
+				else
+					if (playerType == 'E' || playerType == 'e') {
+						compType = 'O';
+						playerType= 'E';
+						playerName ="Even";
+						compName = "Odd";
 					}
+					else 
+						if(search <= 0) {
+							invalidMessage = "Invalid Entry!!! \n" +playerType + " is an invaild option. "
+									+ "\nPlease try again.";
+							JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+						}
+			
 		}
+			catch (StringIndexOutOfBoundsException e) { 
+				invalidMessage = "Invalid Entry!!! \nSelect O for Odd or E for Even";
+				JOptionPane.showMessageDialog(null, invalidMessage,"Invalid Entry !!!", JOptionPane.ERROR_MESSAGE);
+				search = 3;}}
 
 		//Make the initial turn count equal to PlayerPennies since both player and computer have the same number of pennies
 		turnCount = playerPennies;
